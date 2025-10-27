@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply font-mono min-h-dvh flex flex-col justify-center items-center bg-amber-200;
+  }
+
+  button {
+    @apply cursor-pointer rounded-md px-4 py-2 text-white focus:ring-2 focus:ring-offset-1 focus:outline-none active:scale-95;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white shadow-xl p-4 rounded-md;
+  }
+}
