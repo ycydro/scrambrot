@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const ScrambledWord = ({ word, isRunning }) => {
   const [scrambledWord, setScrambledWord] = useState("");
 
