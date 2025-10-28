@@ -185,7 +185,10 @@ function App() {
             GAME OVER!
           </h2>
           <p className="text-lg sm:text-xl font-semibold">
-            Final Score: {points > 1 ? `${points} points` : `${points} point`}
+            <p className="text-lg sm:text-xl font-semibold">
+              Final Score:{" "}
+              {points === 1 ? `${points} point` : `${points} points`}
+            </p>
           </p>
           <button
             onClick={handlePlayAgain}
