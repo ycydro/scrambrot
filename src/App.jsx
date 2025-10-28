@@ -223,7 +223,7 @@ function App() {
             type="text"
             value={guess}
             maxLength={currentWord ? currentWord.length : undefined}
-            disabled={!isRunning}
+            disabled={!isRunning || result}
             onChange={(e) => {
               setGuess(e.target.value);
             }}
