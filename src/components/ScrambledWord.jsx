@@ -18,8 +18,15 @@ const ScrambledWord = ({ word }) => {
   }, [word]);
 
   return (
-    <div className="bg-orange-400 p-4 text-white font-bold text-center text-2xl mt-7 rounded-md">
-      {scrambledWord || "PRESS TO START"}
+    <div className="bg-orange-400 p-6 text-white font-bold text-center text-2xl mt-7 rounded-lg shadow-md border-2 border-orange-300 overflow-hidden">
+      {scrambledWord ? (
+        <div>
+          <div className="text-xs font-normal opacity-50">UNSCRAMBLE THIS:</div>
+          <div className="tracking-wider text-5xl">{scrambledWord}</div>
+        </div>
+      ) : (
+        <div className="opacity-90">PRESS START TO PLAY</div>
+      )}
     </div>
   );
 };

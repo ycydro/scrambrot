@@ -179,13 +179,17 @@ function App() {
 
   if (gameOver) {
     return (
-      <main className="p-6 space-y-4 w-[90vw] max-w-2xl mx-auto">
-        <div className="card flex-1 flex flex-col items-center justify-center border-amber-200 rounded-lg p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-red-600">GAME OVER!</h2>
-          <p className="text-xl font-semibold">Final Score: {points} points</p>
+      <main className="p-4 sm:p-6 space-y-4 w-[90vw] max-w-2xl mx-auto">
+        <div className="card flex-1 flex flex-col items-center justify-center border-amber-200 rounded-lg p-4 sm:p-6 space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-red-600">
+            GAME OVER!
+          </h2>
+          <p className="text-lg sm:text-xl font-semibold">
+            Final Score: {points} points
+          </p>
           <button
             onClick={handlePlayAgain}
-            className="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 px-6 py-2 font-semibold"
+            className="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 px-4 sm:px-6 py-2 font-semibold rounded-md transition-colors w-full sm:w-auto"
           >
             Play Again
           </button>
@@ -195,11 +199,13 @@ function App() {
   }
 
   return (
-    <div className="w-[90vw] p-6 max-w-2xl mx-auto">
+    <div className="w-[90vw] p-4 sm:p-6 max-w-2xl mx-auto">
       {/* TITLE */}
-      <div className="text-center">
-        <h1 className="text-7xl font-black">SCRAMBROT</h1>
-        <p className="text-lg font-medium text-gray-600">
+      <div className="text-center mb-4 sm:mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">
+          SCRAMBROT
+        </h1>
+        <p className="text-base sm:text-lg font-medium text-gray-600 mt-2">
           Test your brainrot knowledge!
         </p>
       </div>
@@ -211,14 +217,17 @@ function App() {
       {result && <GuessResult result={result} word={currentWord} />}
 
       {/* INPUT POINTS TIMER*/}
-      <div className="w-full flex gap-3 mt-5">
+      <div className="w-full flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-5">
         {/* POINTS */}
-        <div className="card flex-1 flex flex-col items-center justify-center border-amber-200 rounded-lg p-4">
-          <p>POINTS</p>
-          <p className="text-green-600 text-4xl">{points}</p>
+        <div className="card flex-1 flex flex-col items-center justify-center border-amber-200 rounded-lg p-3 sm:p-4 order-3 sm:order-1">
+          <p className="text-sm sm:text-base">POINTS</p>
+          <p className="text-green-600 text-2xl sm:text-3xl md:text-4xl">
+            {points}
+          </p>
         </div>
+
         {/* INPUT */}
-        <div className="card flex flex-col gap-2 flex-2">
+        <div className="card flex flex-col gap-2 flex-2 order-2 sm:order-2 w-full">
           <input
             type="text"
             value={guess}
@@ -234,20 +243,23 @@ function App() {
             }}
             placeholder="Enter your guess...."
             className="
-            border border-gray-300 px-4 py-2 rounded-md w-full focus:ring-2 focus:ring-amber-400 focus:outline-none transition
+            border border-gray-300 px-3 sm:px-4 py-2 rounded-md w-full focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm sm:text-base
           "
           />
           <button
             onClick={isRunning ? handleSubmitGuess : initializeGame}
-            className="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 flex-1 rounded-md transition text-white font-semibold py-2"
+            className="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 flex-1 rounded-md transition text-white font-semibold py-2 px-4 text-sm sm:text-base"
           >
             {isRunning ? "SUBMIT" : "START"}
           </button>
         </div>
+
         {/* TIMER */}
-        <div className="card flex-1 flex flex-col items-center justify-center border-amber-200 rounded-lg p-4">
-          <p className="">TIMER</p>
-          <p className="text-green-600 text-4xl">{time}</p>
+        <div className="card flex-1 flex flex-col items-center justify-center border-amber-200 rounded-lg p-3 sm:p-4 order-1 sm:order-3">
+          <p className="text-sm sm:text-base">TIMER</p>
+          <p className="text-green-600 text-2xl sm:text-3xl md:text-4xl">
+            {time}
+          </p>
         </div>
       </div>
     </div>
