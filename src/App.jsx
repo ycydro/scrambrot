@@ -99,6 +99,9 @@ const WORDS = [
   "Grind",
 ];
 
+const GAME_DURATION = 45;
+const RESULT_DISPLAY_DURATION = 1500;
+
 function App() {
   const [guess, setGuess] = useState("");
   const [result, setResult] = useState(null);
@@ -109,7 +112,7 @@ function App() {
   const [currentWord, setCurrentWord] = useState("");
 
   const initializeGame = () => {
-    setTime(15);
+    setTime(GAME_DURATION);
     setPoints(0);
     setGameOver(false);
     setIsRunning(true);
@@ -154,7 +157,7 @@ function App() {
       setResult(null);
       setGuess("");
       setCurrentWord(getRandomWord());
-    }, 2000);
+    }, RESULT_DISPLAY_DURATION);
   };
 
   useEffect(() => {
