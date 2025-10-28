@@ -144,7 +144,7 @@ function App() {
   };
 
   const handleSubmitGuess = () => {
-    if (!isRunning || gameOver) return;
+    if (!isRunning || gameOver || !guess.trim()) return;
 
     if (guess.toUpperCase() === currentWord) {
       setPoints((previousState) => previousState + 1);
