@@ -121,11 +121,11 @@ function App() {
   };
 
   const handlePlayAgain = () => {
+    setIsRunning(false);
+    setGameOver(false);
     setTime(0);
     setPoints(0);
-    setIsRunning(false);
     setGuess("");
-    setGameOver(false);
     setCurrentWord("");
     setResult(null);
   };
@@ -185,7 +185,7 @@ function App() {
             GAME OVER!
           </h2>
           <p className="text-lg sm:text-xl font-semibold">
-            Final Score: {points} points
+            Final Score: {points > 1 ? `${points} points` : `${points} point`}
           </p>
           <button
             onClick={handlePlayAgain}
@@ -211,7 +211,7 @@ function App() {
       </div>
 
       {/* SCRAMBLED WORD DISPLAY */}
-      <ScrambledWord word={currentWord || ""} />
+      <ScrambledWord word={currentWord || ""} isRunning={isRunning} />
 
       {/* GUESS RESULT */}
       {result && <GuessResult result={result} word={currentWord} />}
