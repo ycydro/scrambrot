@@ -133,6 +133,7 @@ function App() {
   };
 
   const handleGameOver = () => {
+    if (gameOver) return;
     setGameOver(true);
     setIsRunning(false);
     setGuess("");
@@ -140,7 +141,7 @@ function App() {
   };
 
   const handleSubmitGuess = () => {
-    if (!isRunning) return;
+    if (!isRunning || gameOver) return;
 
     if (guess.toUpperCase() === currentWord) {
       setPoints((previousState) => previousState + 1);
@@ -201,7 +202,7 @@ function App() {
       </div>
 
       {/* SCRAMBLED WORD DISPLAY */}
-      <ScrambledWord word={currentWord} />
+      <ScrambledWord word={currentWord || ""} />
 
       {/* GUESS RESULT */}
       {result && <GuessResult result={result} word={currentWord} />}
@@ -218,6 +219,7 @@ function App() {
           <input
             type="text"
             value={guess}
+            maxLength={currentWord ? currentWord.length : undefined}
             disabled={!isRunning}
             onChange={(e) => {
               setGuess(e.target.value);
