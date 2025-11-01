@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -110,6 +110,17 @@ function App() {
   const [points, setPoints] = useState(0);
   const [time, setTime] = useState(0);
   const [currentWord, setCurrentWord] = useState("");
+  const inputRef = useRef(null);
+
+  const handleInputFocus = () => {
+    inputRef.current?.focus();
+  };
+
+  useEffect(() => {
+    if (isRunning && !result && !gameOver) {
+      handleInputFocus();
+    }
+  }, [result, isRunning, gameOver]);
 
   const initializeGame = () => {
     setTime(GAME_DURATION);
@@ -118,6 +129,7 @@ function App() {
     setIsRunning(true);
     setResult(null);
     setCurrentWord(getRandomWord());
+    handleInputFocus();
   };
 
   const handlePlayAgain = () => {
@@ -234,6 +246,7 @@ function App() {
           <input
             type="text"
             value={guess}
+            ref={inputRef}
             maxLength={currentWord ? currentWord.length : undefined}
             disabled={!isRunning || result}
             onChange={(e) => {
