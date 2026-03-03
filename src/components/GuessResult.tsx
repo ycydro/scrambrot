@@ -1,4 +1,9 @@
-const GuessResult = ({ result, word }) => {
+interface GuessResultProps {
+  result: string | null;
+  word: string;
+}
+
+const GuessResult = ({ result, word }: GuessResultProps) => {
   return (
     <div className="card mt-3">
       {result === "CORRECT" ? (

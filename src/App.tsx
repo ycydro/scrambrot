@@ -1,6 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import ScrambledWord from "./components/ScrambledWord";
 import GuessResult from "./components/GuessResult";
@@ -99,20 +97,20 @@ const WORDS = [
   "Grind",
 ];
 
-const GAME_DURATION = 45;
-const RESULT_DISPLAY_DURATION = 1500;
+const GAME_DURATION: number = 45;
+const RESULT_DISPLAY_DURATION: number = 1500;
 
 function App() {
-  const [guess, setGuess] = useState("");
-  const [result, setResult] = useState(null);
-  const [isRunning, setIsRunning] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
-  const [points, setPoints] = useState(0);
-  const [time, setTime] = useState(0);
-  const [currentWord, setCurrentWord] = useState("");
-  const inputRef = useRef(null);
+  const [guess, setGuess] = useState<string>("");
+  const [result, setResult] = useState<string | null>(null);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [points, setPoints] = useState<number>(0);
+  const [time, setTime] = useState<number>(0);
+  const [currentWord, setCurrentWord] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleInputFocus = () => {
+  const handleInputFocus = (): void => {
     inputRef.current?.focus();
   };
 
@@ -122,7 +120,7 @@ function App() {
     }
   }, [result, isRunning, gameOver]);
 
-  const initializeGame = () => {
+  const initializeGame = (): void => {
     setTime(GAME_DURATION);
     setPoints(0);
     setGameOver(false);
@@ -132,7 +130,7 @@ function App() {
     handleInputFocus();
   };
 
-  const handlePlayAgain = () => {
+  const handlePlayAgain = (): void => {
     setIsRunning(false);
     setGameOver(false);
     setTime(0);
@@ -142,12 +140,12 @@ function App() {
     setResult(null);
   };
 
-  const getRandomWord = () => {
+  const getRandomWord = (): string => {
     const randomWord = WORDS[Math.floor(Math.random() * WORDS.length)];
     return randomWord.toUpperCase();
   };
 
-  const handleGameOver = () => {
+  const handleGameOver = (): void => {
     if (gameOver) return;
     setGameOver(true);
     setIsRunning(false);
@@ -155,7 +153,7 @@ function App() {
     setCurrentWord("");
   };
 
-  const handleSubmitGuess = () => {
+  const handleSubmitGuess = (): void => {
     if (!isRunning || gameOver || !guess.trim()) return;
 
     if (guess.toUpperCase() === currentWord) {
@@ -248,7 +246,7 @@ function App() {
             value={guess}
             ref={inputRef}
             maxLength={currentWord ? currentWord.length : undefined}
-            disabled={!isRunning || result}
+            disabled={!isRunning || Boolean(result)}
             onChange={(e) => {
               setGuess(e.target.value);
             }}

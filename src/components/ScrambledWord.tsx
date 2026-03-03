@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+interface ScrambledWordProps {
+  word: string;
+  isRunning: boolean;
+}
 
-const ScrambledWord = ({ word, isRunning }) => {
-  const [scrambledWord, setScrambledWord] = useState("");
+const ScrambledWord = ({ word, isRunning }: ScrambledWordProps) => {
+  const [scrambledWord, setScrambledWord] = useState<string>("");
 
-  const scrambleWord = (word) => {
+  const scrambleWord = (word: string): string => {
     const letters = word.split("");
     for (let i = word.length - 1; i > 0; i--) {
       const randomIndex = Math.floor(Math.random() * (i + 1));
